@@ -1,0 +1,12 @@
+{
+  "name": "devbox",
+  "owner": { "name": "Ahmadkashif", "url": "https://github.com/Ahmadkashif" },
+  "description": "DevBox: a spec-driven software delivery harness for Claude Code.",
+  "plugins": [
+    {
+      "name": "devbox",
+      "source": ".",
+      "description": "Spec-driven delivery harness with gated phases, TDD, adversarial review, an AFK runner and guardrail hooks."
+    }
+  ]
+}

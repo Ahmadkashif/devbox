@@ -1,0 +1,11 @@
+{
+  "name": "devbox",
+  "displayName": "DevBox",
+  "version": "0.1.0",
+  "description": "Spec-driven delivery harness: takes any software request from idea to shipped through gated phases (intake, spec, grill, design, slice, critique, build, verify, ship, retro), with TDD, adversarial plan review, an AFK task runner and guardrail hooks.",
+  "author": { "name": "Ahmadkashif", "url": "https://github.com/Ahmadkashif" },
+  "homepage": "https://github.com/Ahmadkashif/devbox",
+  "repository": "https://github.com/Ahmadkashif/devbox",
+  "license": "MIT",
+  "keywords": ["spec-driven-development", "tdd", "workflow", "harness", "code-review", "agents", "delivery"]
+}
