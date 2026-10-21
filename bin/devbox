@@ -148,9 +148,9 @@ fm_set() {
   rm -f "$tmp"
 }
 
-# Find the project root: nearest ancestor with .devbox/config.
+# Find the project root: nearest ancestor of $PWD with .devbox/config.
 find_root() {
-  local d="${1:-$PWD}"
+  local d="$PWD"
   while [ "$d" != "/" ] && [ -n "$d" ]; do
     [ -f "$d/.devbox/config" ] && { printf '%s' "$d"; return 0; }
     d="$(dirname "$d")"
@@ -504,7 +504,7 @@ cmd_sync() {
 }
 
 cmd_feature() {
-  [ $# -ge 1 ] && [ -n "$1" ] || die "usage: devbox feature NAME"
+  [ -n "${1:-}" ] || die "usage: devbox feature NAME"
   local root title slug num dir tpl f
   root="$(require_project)"
   title="$*"
@@ -533,7 +533,7 @@ cmd_use() {
 }
 
 cmd_adr() {
-  [ $# -ge 1 ] && [ -n "$1" ] || die "usage: devbox adr TITLE"
+  [ -n "${1:-}" ] || die "usage: devbox adr TITLE"
   local root base title num slug tpl dest
   root="$(find_root || git rev-parse --show-toplevel 2>/dev/null || pwd)"
   title="$*"
