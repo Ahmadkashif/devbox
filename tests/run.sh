@@ -223,7 +223,9 @@ check "every agent has name and description" 'for a in "$ROOT"/agents/*.md; do g
 check "plugin manifests are valid JSON" 'python3 -c "import json,sys; [json.load(open(f)) for f in sys.argv[1:]]" "$ROOT/.claude-plugin/plugin.json" "$ROOT/.claude-plugin/marketplace.json" "$ROOT/hooks/hooks.json"'
 check "plugin version matches CLI version" '[ "$(python3 -c "import json; print(json.load(open(\"$ROOT/.claude-plugin/plugin.json\"))[\"version\"])")" = "$("$DEVBOX" version | cut -d" " -f2)" ]'
 if command -v shellcheck >/dev/null 2>&1; then
-  run shellcheck -x "$ROOT/bin/devbox" "$ROOT"/hooks/*.sh "$ROOT"/tests/*.sh "$ROOT/install.sh"
+  # Run from the repo root so `# shellcheck source=hooks/lib.sh` directives resolve.
+  sc() { (cd "$ROOT" && shellcheck -x bin/devbox hooks/*.sh tests/*.sh install.sh); }
+  run sc
   check "shellcheck clean" '[ $RC -eq 0 ]'
 else
   printf '  skip  shellcheck (not installed)\n'
